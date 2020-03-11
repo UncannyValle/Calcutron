@@ -9,27 +9,37 @@ function App() {
   const buttonClick = value => {
     let number = result;
     if (value === "clear") {
-      number = 0 
-      setResult("0");
+      number = 0;
+      setResult(number);
+      console.log("clear");
     } else if (number === 0 && value > 0) {
-      number = value
-      setResult(value);
+      number = value;
+      setResult(number);
+      console.log("first");
     } else if (number === 0 && value === ".") {
-      setResult(0 + value);
+      number = 0;
+      setResult(number + value);
+      console.log("dot");
     } else if (number > 0) {
-      setResult("" + result + value);
+      number = value;
+      setResult("" + result + number);
+      console.log("conc");
+    } else {
+      setResult("error");
     }
     console.log("click");
+    console.log(result)
+
   };
 
   return (
     <>
       <header>
-        <h1>Animal Calculator</h1>
+        <h1>Calculator</h1>
       </header>
 
       <NumberPad>
-        <input id="display" type="number" readOnly value={result}></input>
+        <input id="display" type="text" readOnly value={result}></input>
         <Button id={"one"} name={1} clickHandler={() => buttonClick(1)} />
         <Button id={"two"} name={2} clickHandler={() => buttonClick(2)} />
         <Button id={"three"} name={3} clickHandler={() => buttonClick(3)} />
