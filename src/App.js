@@ -5,31 +5,29 @@ import NumberPad from "./components/NumberPad";
 
 function App() {
   const [result, setResult] = useState(0);
+  let r = /\./;
+  
+  let num1 = 0;
+  let num2 = 0;
 
   const buttonClick = value => {
-    let number = result;
-    if (value === "clear") {
-      number = 0;
-      setResult(number);
-      console.log("clear");
-    } else if (number === 0 && value > 0) {
-      number = value;
-      setResult(number);
-      console.log("first");
-    } else if (number === 0 && value === ".") {
-      number = 0;
-      setResult(number + value);
-      console.log("dot");
-    } else if (number > 0) {
-      number = value;
-      setResult("" + result + number);
-      console.log("conc");
-    } else {
-      setResult("error");
+    if (value > 0 && result === 0) {
+      number = result;
+      setResult(value + "");
+    } else if (value > 0 && (result > 0 || result === "0.")) {
+      number = result;
+      setResult("" + result + value);
+    } else if (value === "." && r.test(result) === false) {
+      setResult("" + result + value);
+    } else if (value === "clear") {
+      setResult(0);
+    } else if (value === "+") {
+      
     }
-    console.log("click");
-    console.log(result)
 
+   
+
+    console.log(result);
   };
 
   return (
