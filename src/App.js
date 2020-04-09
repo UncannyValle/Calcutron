@@ -4,30 +4,63 @@ import Button from "./components/Button";
 import NumberPad from "./components/NumberPad";
 
 function App() {
-  const [result, setResult] = useState(0);
-  let r = /\./;
-  
-  let num1 = 0;
-  let num2 = 0;
+  const [display, setDisplay] = useState("0");
+  const [previous, setPrevious] = useState("");
+  // const [current, setCurrent] = useState("");
+  const [operator, setOperator] = useState("");
 
-  const buttonClick = value => {
-    if (value > 0 && result === 0) {
-      number = result;
-      setResult(value + "");
-    } else if (value > 0 && (result > 0 || result === "0.")) {
-      number = result;
-      setResult("" + result + value);
-    } else if (value === "." && r.test(result) === false) {
-      setResult("" + result + value);
-    } else if (value === "clear") {
-      setResult(0);
-    } else if (value === "+") {
-      
+  const addToDisplay = (val) => {
+    setDisplay(display + val);
+  };
+  const addZeroToDisplay = (val) => {
+    if (display !== "") {
+      setDisplay(display + val);
     }
+  };
+  const addDecimalToDisplay = (val) => {
+    if (display.indexOf(".") === -1) {
+      setDisplay(display + val);
+    }
+  };
+  const clearAll = () => {
+    setDisplay("");
+    setPrevious("");
+    // setCurrent("");
+    setOperator("");
+  };
 
-   
+  const addition = () => {
+    setPrevious(display);
+    setDisplay("");
+    setOperator("plus");
+  };
+  const subtraction = () => {
+    setPrevious(display);
+    setDisplay("");
+    setOperator("minus");
+  };
+  const multiplication = () => {
+    setPrevious(display);
+    setDisplay("");
+    setOperator("times");
+  };
+  const division = () => {
+    setPrevious(display);
+    setDisplay("");
+    setOperator("over");
+  };
 
-    console.log(result);
+  const answer = () => {
+    let curr = display;
+    if (operator === "plus") {
+      setDisplay(Number(previous) + Number(curr));
+    } else if (operator === "minus") {
+      setDisplay(Number(previous) - Number(curr));
+    } else if (operator === "times") {
+      setDisplay(Number(previous) * Number(curr));
+    } else if (operator === "over") {
+      setDisplay(Number(previous) / Number(curr));
+    }
   };
 
   return (
@@ -37,37 +70,26 @@ function App() {
       </header>
 
       <NumberPad>
-        <input id="display" type="text" readOnly value={result}></input>
-        <Button id={"one"} name={1} clickHandler={() => buttonClick(1)} />
-        <Button id={"two"} name={2} clickHandler={() => buttonClick(2)} />
-        <Button id={"three"} name={3} clickHandler={() => buttonClick(3)} />
-        <Button id={"multiply"} name={"*"} />
-
-        <Button id={"four"} name={4} clickHandler={() => buttonClick(4)} />
-        <Button id={"five"} name={5} clickHandler={() => buttonClick(5)} />
-        <Button id={"six"} name={6} clickHandler={() => buttonClick(6)} />
-        <Button id={"divide"} name={"/"} />
-
-        <Button id={"seven"} name={7} clickHandler={() => buttonClick(7)} />
-        <Button id={"eight"} name={8} clickHandler={() => buttonClick(8)} />
-        <Button id={"nine"} name={9} clickHandler={() => buttonClick(9)} />
-        <Button id={"add"} name={"+"} />
-
-        <Button id={"zero"} name={0} clickHandler={() => buttonClick(0)} />
-        <Button
-          id={"decimal"}
-          name={"."}
-          clickHandler={() => buttonClick(".")}
-        />
-
-        <Button id={"subtract"} name={"-"} />
-        <Button
-          id={"clear"}
-          name={"CE"}
-          clickHandler={() => buttonClick("clear")}
-        />
-
-        <Button id={"equals"} name={"="} />
+        <div id="display">{display}</div>
+        <Button clickHandler={addToDisplay} id={"one"}>
+          1
+        </Button>
+        <Button clickHandler={addToDisplay}id={"two"}>2</Button>
+        <Button clickHandler={addToDisplay}id={"three"}>3</Button>
+        <Button clickHandler={addition}id={"add"}>+</Button>
+        <Button clickHandler={addToDisplay}id={"four"}>4</Button>
+        <Button clickHandler={addToDisplay}id={"five"}>5</Button>
+        <Button clickHandler={addToDisplay}id={"six"}>6</Button>
+        <Button clickHandler={subtraction}id={"subtract"}>-</Button>
+        <Button clickHandler={addToDisplay}id={"seven"}>7</Button>
+        <Button clickHandler={addToDisplay}id={"eight"}>8</Button>
+        <Button clickHandler={addToDisplay}id={"nine"}>9</Button>
+        <Button clickHandler={multiplication}id={"multiply"}>*</Button>
+        <Button clickHandler={addDecimalToDisplay}id={"decimal"}>.</Button>
+        <Button clickHandler={addZeroToDisplay}id={"zero"}>0</Button>
+        <Button clickHandler={clearAll}id={"clear"}>CE</Button>
+        <Button clickHandler={division}id={"divide"}>/</Button>
+        <Button clickHandler={answer}id={"equals"}>=</Button>
       </NumberPad>
     </>
   );

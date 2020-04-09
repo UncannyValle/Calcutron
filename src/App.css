@@ -12,19 +12,19 @@ header {
   width: 100%;
   height:100%;
 }
-#zero{
-  grid-column: 1 / span 2;
-}
 
 #equals{
-  grid-column: 2/span 3;
+  grid-column: 1/span 4;
 }
 
 /* Number Pad Component */
 #display{
   grid-column: 1 / span 4;
   margin: 0;
-  font-size: large;
+  font-size: 2rem;
+  background-color: white;
+  height: 80%;
+  align-self: center;
 }
 #number-pad {
   display: grid;
@@ -35,4 +35,5 @@ header {
   width: 500px;
   height: auto;
   padding: 50px;
+  align-items: center;
 }

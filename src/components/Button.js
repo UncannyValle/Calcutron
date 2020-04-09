@@ -1,8 +1,8 @@
 import React from "react";
 
 const Button = (props) => (
-  <button className="button" onClick={props.clickHandler} id={props.id} value={props.name}>
-  {props.name}
+  <button className="button" onClick={() => props.clickHandler(props.children)} id={props.id}>
+    {props.children}
   </button>
 );
 
