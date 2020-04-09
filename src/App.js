@@ -34,24 +34,58 @@ function App() {
   };
 
   const addition = () => {
-    setPrevious(display);
-    setDisplay("0");
-    setOperator("plus");
+    if (operator === "") {
+      setPrevious(display);
+      setDisplay("0");
+      setOperator("plus");
+    } else {
+      evaluate("plus");
+      setDisplay("0");
+    }
   };
   const subtraction = () => {
-    setPrevious(display);
-    setDisplay("0");
-    setOperator("minus");
+    if (operator === "") {
+      setPrevious(display);
+      setDisplay("0");
+      setOperator("minus");
+    } else {
+      evaluate("minus");
+      setDisplay("0");
+    }
   };
   const multiplication = () => {
-    setPrevious(display);
-    setDisplay("0");
-    setOperator("times");
+    if (operator === "") {
+      setPrevious(display);
+      setDisplay("0");
+      setOperator("times");
+    } else {
+      evaluate("times");
+      setDisplay("0");
+    }
   };
   const division = () => {
-    setPrevious(display);
-    setDisplay("0");
-    setOperator("over");
+    if (operator === "") {
+      setPrevious(display);
+      setDisplay("0");
+      setOperator("over");
+    } else {
+      evaluate("over");
+      setDisplay("0");
+    }
+  };
+
+  const evaluate = (oper) => {
+    let prev = previous;
+    if (operator === "plus") {
+      setPrevious(Number(prev) + Number(display));
+    } else if (operator === "minus") {
+      setPrevious(Number(previous) - Number(display));
+    } else if (operator === "times") {
+      setPrevious(Number(previous) * Number(display));
+    } else if (operator === "over") {
+      setPrevious(Number(previous) / Number(display));
+    }
+    setOperator(oper);
   };
 
   const answer = () => {
