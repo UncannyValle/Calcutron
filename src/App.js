@@ -23,30 +23,30 @@ function App() {
     }
   };
   const clearAll = () => {
-    setDisplay("");
-    setPrevious("");
+    setDisplay("0");
+    setPrevious("0");
     // setCurrent("");
     setOperator("");
   };
 
   const addition = () => {
     setPrevious(display);
-    setDisplay("");
+    setDisplay("0");
     setOperator("plus");
   };
   const subtraction = () => {
     setPrevious(display);
-    setDisplay("");
+    setDisplay("0");
     setOperator("minus");
   };
   const multiplication = () => {
     setPrevious(display);
-    setDisplay("");
+    setDisplay("0");
     setOperator("times");
   };
   const division = () => {
     setPrevious(display);
-    setDisplay("");
+    setDisplay("0");
     setOperator("over");
   };
 
