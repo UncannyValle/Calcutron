@@ -99,6 +99,7 @@ function App() {
     } else if (operator === "over") {
       setDisplay(Number(previous) / Number(curr));
     }
+    setOperator("")
   };
 
   return (
